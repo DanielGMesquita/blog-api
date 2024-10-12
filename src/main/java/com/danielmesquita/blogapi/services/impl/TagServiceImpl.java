@@ -1,5 +1,6 @@
 package com.danielmesquita.blogapi.services.impl;
 
+import com.danielmesquita.blogapi.exceptions.ResourceNotFoundException;
 import com.danielmesquita.blogapi.models.Tag;
 import com.danielmesquita.blogapi.repositories.TagRepository;
 import com.danielmesquita.blogapi.services.TagService;
@@ -30,7 +31,10 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public Tag update(Long id, Tag tag) {
-        Optional<Tag> originalTag = repository.findById(id);
+        Tag tagToEdit = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found"));
+
+        tagToEdit.setPostId(tag.getPostId());
+        tagToEdit.setTitle(tag.getTitle());
 
         return repository.save(tag);
     }

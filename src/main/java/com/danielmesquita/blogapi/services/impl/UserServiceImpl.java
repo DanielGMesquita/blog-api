@@ -6,6 +6,7 @@ import com.danielmesquita.blogapi.repositories.UserRepository;
 import com.danielmesquita.blogapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +17,17 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public User save(User user) {
         try {
-            return userRepository.save(user);
+            User newUser = new User();
+            newUser.setEmail(user.getEmail());
+            newUser.setName(user.getName());
+            newUser.setRole(user.getRole());
+            newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+            return userRepository.save(newUser);
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("User already exists");
         }
