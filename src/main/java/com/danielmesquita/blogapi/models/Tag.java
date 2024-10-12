@@ -11,14 +11,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Tag {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tag_id")
-    private Long tagId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "tag_id")
+  private Long tagId;
 
-    @Column(name = "tag_title")
-    private String title;
+  @Column(name = "tag_title", unique = true)
+  private String tagTitle;
 
-    @ManyToMany
-    private Post postId;
+  @ManyToMany private Post postId;
+
+  public void setTagTitle(String title) {
+    this.tagTitle = title.toLowerCase();
+  }
 }

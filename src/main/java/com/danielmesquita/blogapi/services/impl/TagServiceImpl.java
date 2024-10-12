@@ -4,43 +4,48 @@ import com.danielmesquita.blogapi.exceptions.ResourceNotFoundException;
 import com.danielmesquita.blogapi.models.Tag;
 import com.danielmesquita.blogapi.repositories.TagRepository;
 import com.danielmesquita.blogapi.services.TagService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
 
 @Service
 public class TagServiceImpl implements TagService {
-    @Autowired
-    private TagRepository repository;
-    @Override
-    public Tag save(Tag tag) {
-        return repository.save(tag);
+  @Autowired private TagRepository repository;
+
+  @Override
+  public Tag save(Tag tag) {
+    try {
+      return repository.save(tag);
+    } catch (DataIntegrityViolationException e) {
+      throw new RuntimeException("Tag already exists");
     }
+  }
 
-    @Override
-    public List<Tag> getAll() {
-        return repository.findAll();
-    }
+  @Override
+  public List<Tag> getAll() {
+    return repository.findAll();
+  }
 
-    @Override
-    public Optional<Tag> get(Long id) {
-        return repository.findById(id);
-    }
+  @Override
+  public Optional<Tag> get(Long id) {
+    return repository.findById(id);
+  }
 
-    @Override
-    public Tag update(Long id, Tag tag) {
-        Tag tagToEdit = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found"));
+  @Override
+  public Tag update(Long id, Tag tag) {
+    Tag tagToEdit =
+        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found"));
 
-        tagToEdit.setPostId(tag.getPostId());
-        tagToEdit.setTitle(tag.getTitle());
+    tagToEdit.setPostId(tag.getPostId());
+    tagToEdit.setTagTitle(tag.getTagTitle());
 
-        return repository.save(tag);
-    }
+    return repository.save(tag);
+  }
 
-    @Override
-    public void delete(Long id) {
-
-    }
+  @Override
+  public void delete(Long id) {
+    repository.deleteById(id);
+  }
 }

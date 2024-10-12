@@ -10,20 +10,20 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "user_id")
+  private Long userId;
 
-    @Column(name = "user_name", unique = true)
-    private String name;
+  @Column(name = "user_name", unique = true)
+  private String name;
 
-    @Column(name = "user_email")
-    private String email;
+  @Column(name = "user_email")
+  private String email;
 
-    @Column(name = "password")
-    private String password;
+  @Column(name = "password")
+  private String password;
 
-    @Column(name = "role")
-    private Role role;
+  @Column(name = "role")
+  private Role role;
 }

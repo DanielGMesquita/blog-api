@@ -1,18 +1,17 @@
 package com.danielmesquita.blogapi.services;
 
 import com.danielmesquita.blogapi.models.User;
-
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    User save(User user);
+  User save(User user);
 
-    List<User> getAll();
+  List<User> getAll();
 
-    Optional<User> get(Long id);
+  Optional<User> get(Long id);
 
-    User update(Long id, User user);
+  User update(Long id, User user);
 
-    void delete(Long id);
+  void delete(Long id);
 }
