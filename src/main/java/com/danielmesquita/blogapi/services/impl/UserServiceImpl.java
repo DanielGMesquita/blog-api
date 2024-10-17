@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
       User newUser = new User();
       newUser.setEmail(user.getEmail());
       newUser.setName(user.getName());
-      newUser.setRole(user.getRole());
+      newUser.setUserRole(user.getUserRole());
       newUser.setPassword(passwordEncoder.encode(user.getPassword()));
       return userRepository.save(newUser);
     } catch (DataIntegrityViolationException e) {
@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
 
     userToEdit.setName(newUserData.getName());
     userToEdit.setEmail(newUserData.getEmail());
+    userToEdit.setPassword(passwordEncoder.encode(newUserData.getPassword()));
 
     return userRepository.save(userToEdit);
   }
