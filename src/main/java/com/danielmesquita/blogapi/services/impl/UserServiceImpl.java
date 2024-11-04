@@ -1,9 +1,9 @@
 package com.danielmesquita.blogapi.services.impl;
 
-import com.danielmesquita.blogapi.exceptions.ResourceNotFoundException;
 import com.danielmesquita.blogapi.models.User;
 import com.danielmesquita.blogapi.repositories.UserRepository;
 import com.danielmesquita.blogapi.services.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     User userToEdit =
         userRepository
             .findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+            .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
     userToEdit.setName(newUserData.getName());
     userToEdit.setEmail(newUserData.getEmail());

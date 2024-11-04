@@ -1,9 +1,9 @@
 package com.danielmesquita.blogapi.services.impl;
 
-import com.danielmesquita.blogapi.exceptions.ResourceNotFoundException;
 import com.danielmesquita.blogapi.models.Comment;
 import com.danielmesquita.blogapi.repositories.CommentRepository;
 import com.danielmesquita.blogapi.services.CommentService;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +31,7 @@ public class CommentServiceImpl implements CommentService {
   @Override
   public Comment update(Long id, Comment comment) {
     Comment commentToEdit =
-        repository
-            .findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Comment not found"));
+        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Comment not found"));
 
     commentToEdit.setCommentText(comment.getCommentText());
 

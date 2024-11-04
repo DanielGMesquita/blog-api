@@ -1,9 +1,9 @@
 package com.danielmesquita.blogapi.services.impl;
 
-import com.danielmesquita.blogapi.exceptions.ResourceNotFoundException;
 import com.danielmesquita.blogapi.models.Tag;
 import com.danielmesquita.blogapi.repositories.TagRepository;
 import com.danielmesquita.blogapi.services.TagService;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class TagServiceImpl implements TagService {
   @Override
   public Tag update(Long id, Tag tag) {
     Tag tagToEdit =
-        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tag not found"));
+        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Tag not found"));
 
     tagToEdit.setPostId(tag.getPostId());
     tagToEdit.setTagTitle(tag.getTagTitle());
