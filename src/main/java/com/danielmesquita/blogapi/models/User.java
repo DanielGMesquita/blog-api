@@ -36,6 +36,9 @@ public class User implements UserDetails {
   @Column(name = "role")
   private UserRole userRole;
 
+  @Column(name = "addresses")
+  private List<Address> addresses;
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     if (this.userRole == UserRole.ADMIN) {
