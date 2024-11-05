@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -37,6 +37,7 @@ public class User implements UserDetails {
   private UserRole userRole;
 
   @Column(name = "addresses")
+  @OneToMany
   private List<Address> addresses;
 
   @Override

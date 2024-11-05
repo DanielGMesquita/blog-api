@@ -76,16 +76,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.flywaydb.enterprise</groupId>
-			<artifactId>flyway-mysql</artifactId>
-			<version>8.5.13</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.5.0</version>
@@ -113,7 +103,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>org.danielmesquita.Application</mainClass> <!-- Defina a sua classe principal -->
+							<mainClass>com.danielmesquita.blogapi.BlogApplication</mainClass> <!-- Defina a sua classe principal -->
 						</manifest>
 					</archive>
 				</configuration>

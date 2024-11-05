@@ -38,7 +38,6 @@ public class TagServiceImpl implements TagService {
     Tag tagToEdit =
         repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Tag not found"));
 
-    tagToEdit.setPostId(tag.getPostId());
     tagToEdit.setTagTitle(tag.getTagTitle());
 
     return repository.save(tag);

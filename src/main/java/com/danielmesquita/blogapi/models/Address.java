@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Address")
+@Table(name = "addresses")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -32,6 +32,6 @@ public class Address {
   private String zipCode;
 
   @ManyToOne
-  @JoinColumn(name = "userId")
+  @JoinColumn(name = "user_id")
   private User user;
 }

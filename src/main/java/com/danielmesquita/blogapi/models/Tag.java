@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "Tag")
+@Table(name = "tags")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -18,8 +21,6 @@ public class Tag {
 
   @Column(name = "tag_title", unique = true)
   private String tagTitle;
-
-  @ManyToMany private Post postId;
 
   public void setTagTitle(String title) {
     this.tagTitle = title.toLowerCase();

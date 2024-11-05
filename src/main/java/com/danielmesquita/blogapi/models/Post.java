@@ -2,12 +2,16 @@ package com.danielmesquita.blogapi.models;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Post")
+@Table(name = "posts")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -27,4 +31,7 @@ public class Post {
   private Date date;
 
   @ManyToOne private User userId;
+
+  @OneToMany
+  private List<Tag> tagId;
 }

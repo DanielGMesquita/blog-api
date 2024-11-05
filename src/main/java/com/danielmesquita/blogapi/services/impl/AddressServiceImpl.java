@@ -8,14 +8,11 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AddressServiceImpl implements AddressService {
   @Autowired private AddressRepository addressRepository;
-
-  @Autowired private PasswordEncoder passwordEncoder;
 
   public Address save(Address address) {
     try {
