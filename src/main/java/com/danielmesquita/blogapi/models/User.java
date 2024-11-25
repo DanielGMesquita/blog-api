@@ -1,6 +1,5 @@
 package com.danielmesquita.blogapi.models;
 
-import com.danielmesquita.blogapi.enums.AuthRoles;
 import com.danielmesquita.blogapi.enums.UserRole;
 import jakarta.persistence.*;
 import java.util.Collection;
@@ -33,21 +32,23 @@ public class User implements UserDetails {
   @Column(name = "password")
   private String password;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "role")
   private UserRole userRole;
 
   @Column(name = "addresses")
   @OneToMany
+  @Enumerated(EnumType.STRING)
   private List<Address> addresses;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     if (this.userRole == UserRole.ADMIN) {
       return List.of(
-          new SimpleGrantedAuthority(AuthRoles.ADMIN.getRole()),
-          new SimpleGrantedAuthority(AuthRoles.USER.getRole()));
+          new SimpleGrantedAuthority(UserRole.ADMIN.getRole()),
+          new SimpleGrantedAuthority(UserRole.USER.getRole()));
     }
-    return List.of(new SimpleGrantedAuthority(AuthRoles.USER.getRole()));
+    return List.of(new SimpleGrantedAuthority(UserRole.USER.getRole()));
   }
 
   @Override

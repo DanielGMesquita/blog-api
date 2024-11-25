@@ -1,4 +1,9 @@
-INSERT INTO blogdb.User
-(user_id, email, name, password, role, username)
+INSERT INTO users
+(user_id, user_email, name, password, role, username)
 VALUES
-(1, "flyway@test.com", "Flyway teste", "$2a$10$jhLDsjRjrQSyvQBkCxsklu867hTzT6VqSIBAMXUbn1UfICS6eklT", 0, "flyway");
+(1, 'daniel@test.com', 'Daniel teste', '$2a$12$yCqmEu1sJ8mPyb1pArALN.wxaWpzPT/yPTyeeL1hpweuRsqMYhxi6', 'USER', 'daniel');
+
+INSERT INTO users
+(user_id, user_email, name, password, role, username)
+VALUES
+(2, 'admin@test.com', 'Admin', '$2a$12$c3GdjqYbX3Cohr1y6oZUo.s8xnImFOMuLYTQjUptueXCad967oFjG', 'ADMIN', 'admin');

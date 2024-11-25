@@ -1,6 +1,6 @@
 package com.danielmesquita.blogapi.config;
 
-import com.danielmesquita.blogapi.enums.AuthRoles;
+import com.danielmesquita.blogapi.enums.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,15 +37,15 @@ public class SpringSecurityAuthentication {
                     .requestMatchers(HttpMethod.POST, "/login")
                     .permitAll()
                     .requestMatchers(HttpMethod.POST, "/users/save")
-                    .hasRole(AuthRoles.ADMIN.getRole())
+                    .hasAuthority(UserRole.ADMIN.getRole())
                     .requestMatchers(HttpMethod.GET, "/users/getAll")
-                    .hasRole(AuthRoles.USER.getRole())
+                    .hasAuthority(UserRole.USER.getRole())
                     .requestMatchers(HttpMethod.GET, "/users/get")
-                    .hasRole(AuthRoles.USER.getRole())
+                    .hasAuthority(UserRole.USER.getRole())
                     .requestMatchers(HttpMethod.PUT, "/users/update")
-                    .hasRole(AuthRoles.ADMIN.getRole())
+                    .hasAuthority(UserRole.ADMIN.getRole())
                     .requestMatchers(HttpMethod.DELETE, "/users/delete")
-                    .hasRole(AuthRoles.ADMIN.getRole())
+                    .hasAuthority(UserRole.ADMIN.getRole())
                     .anyRequest()
                     .authenticated())
         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

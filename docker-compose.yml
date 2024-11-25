@@ -3,7 +3,7 @@ version: '3.9'
 services:
   postgres_application:
     container_name: postgres_application
-    image: postgres
+    image: postgres:latest
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -13,7 +13,7 @@ services:
     ports:
       - "5432:5432"
 
-  delivery_management_api:
+  blog-api:
     build: .
     ports:
       - "8080:8080"
