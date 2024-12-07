@@ -1,6 +1,8 @@
 package com.danielmesquita.blogapi.models;
 
+import com.danielmesquita.blogapi.deserializers.CustomAuthorityDeserializer;
 import com.danielmesquita.blogapi.enums.UserRole;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import java.util.Collection;
 import java.util.List;
@@ -42,6 +44,7 @@ public class User implements UserDetails {
   private List<Address> addresses;
 
   @Override
+  @JsonDeserialize(using = CustomAuthorityDeserializer.class)
   public Collection<? extends GrantedAuthority> getAuthorities() {
     if (this.userRole == UserRole.ADMIN) {
       return List.of(

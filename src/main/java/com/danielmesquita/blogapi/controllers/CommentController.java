@@ -15,7 +15,7 @@ public class CommentController {
 
   @PostMapping("/save")
   private @ResponseBody Comment save(@RequestBody Comment comment) {
-    return service.save(comment);
+    return service.send(comment);
   }
 
   @GetMapping(path = "/getAll")
